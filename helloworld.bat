@@ -2,7 +2,14 @@
 title Dev's 7d2dLauncher
 cls
 
+rem Set the path to the Mods folder
+set "MODS_FOLDER=%APPDATA%\7DaysToDie\Mods"
+
+rem Define PowerShell command for delay (250 milliseconds)
+set "delayCommand=powershell -Command "Start-Sleep -Milliseconds 250""
+
 :MENU
+color 02
 echo ------------------------------
 echo     Dev's 7d2dLauncher
 echo ------------------------------
@@ -43,17 +50,39 @@ pause
 goto MENU
 
 :RemoveMods
+cls
 echo Removing mods...
 
-rem Loop through each file in the directory and delete
-for %%f in ("C:\Users\Devon\AppData\Roaming\7DaysToDie\Mods\*.*") do (
-    if exist "%%f" (
-        echo Deleting: %%~nxf
-        del /Q "%%f" >nul 2>&1
-    )
+rem Set target directory for mods removal
+set "targetDir=%APPDATA%\7DaysToDie"
+
+rem Check if Mods folder exists
+if not exist "%targetDir%\Mods" (
+    echo Mods folder not found.
+    pause
+    goto MENU
+)
+color 0C
+echo Deleting contents of Mods folder...
+
+rem Loop through each file and directory in Mods folder
+for /D %%d in ("%MODS_FOLDER%\*") do (
+    echo Deleting mod: %%~nxd
+    rmdir /s /q "%%d"
+)
+for %%f in ("%MODS_FOLDER%\*") do (
+    echo Deleting mod: %%~nxf
+    del /q "%%f"
 )
 
 echo.
-echo All mods removed.
-pause
+
+echo Removed all mods... returning to menu...
+%delayCommand% >nul 2>&1
+
+rem Pause for 5 seconds
+ping -n 6 127.0.0.1 >nul
+
+rem Clear screen and return to menu
+cls
 goto MENU
