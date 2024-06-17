@@ -9,7 +9,7 @@ rem Define PowerShell command for delay (250 milliseconds)
 set "delayCommand=powershell -Command "Start-Sleep -Milliseconds 250""
 
 :MENU
-color 02
+color 0A
 echo ------------------------------
 echo     Dev's 7d2dLauncher
 echo ------------------------------
