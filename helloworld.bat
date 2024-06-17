@@ -19,7 +19,7 @@ echo (2) Update Mods
 echo (3) Download Map
 echo (4) Remove Mods
 echo.
-set /p choice=RSelect (1-4) then press Enter:
+set /p choice=Select (1-4) then press Enter:
 
 rem Check user input and take appropriate action
 if "%choice%"=="1" goto LaunchGame
