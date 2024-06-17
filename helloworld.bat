@@ -33,6 +33,7 @@ goto MENU
 
 :LaunchGame
 echo Launching the game...
+start steam://rungameid/251570
 rem Add your commands to launch the game here
 pause
 goto MENU
